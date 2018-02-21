@@ -3,9 +3,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.util.List;
 
 public class ClickAdmin {
     private WebDriver driver;
@@ -22,7 +25,7 @@ public class ClickAdmin {
         driver.findElement(By.name("username")).sendKeys("admin");
         driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
-        driver.findElement(By.cssSelector("div #box-apps-menu-wrapper li")).click();
+/*        driver.findElement(By.cssSelector("div #box-apps-menu-wrapper li")).click();
         driver.findElement(By.cssSelector("h1"));
         driver.findElement(By.cssSelector("div #box-apps-menu-wrapper li #doc-template")).click();
         driver.findElement(By.cssSelector("h1"));
@@ -127,7 +130,22 @@ public class ClickAdmin {
         driver.findElement(By.xpath("//a[contains(.,'vQmods')]")).click();
         driver.findElement(By.cssSelector("h1"));
         driver.findElement(By.id("doc-vqmods")).click();
-        driver.findElement(By.cssSelector("h1"));
+        driver.findElement(By.cssSelector("h1"));*/
+
+
+        for (int i=0;i<driver.findElements(By.cssSelector("div #box-apps-menu>li")).size();i++)
+        {
+            driver.findElements(By.cssSelector("div #box-apps-menu>li")).get(i).click();
+            for (int j=0; j<driver.findElements(By.cssSelector("div #box-apps-menu>li")).get(i).findElements(By.cssSelector("li")).size();j++)
+            {
+                driver.findElements(By.cssSelector("div #box-apps-menu>li")).get(i).findElements(By.cssSelector("li")).get(j).click();
+                driver.findElement(By.cssSelector("h1"));
+            }
+
+            driver.findElement(By.cssSelector("h1"));
+
+        }
+
 
     }
 
