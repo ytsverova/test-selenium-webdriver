@@ -16,7 +16,7 @@ public class CheckProduct {
 
     @Before
     public void start() {
-        driver = new ChromeDriver();
+        driver = new FirefoxDriver();
         wait = new WebDriverWait(driver, 10);
     }
     @Test
@@ -81,45 +81,46 @@ public class CheckProduct {
 
     public boolean checkGrey(WebElement element)
     {
-        String grey=element.getCssValue("color");
-        if (grey.contains("rgba"))
-            grey= grey.substring(0,grey.lastIndexOf(","));
-        grey=grey.replace("rgba","");
-        grey=grey.replace("rgb","");
-        grey= grey.replace("(","");
-        grey= grey.replace(")","");
-        grey= grey.replace(", ",",");
-        String colorR=grey.substring(0,grey.indexOf(","));
-        grey=grey.substring(grey.indexOf(",")+1);
-        String colorG=grey.substring(0,grey.indexOf(","));
-        grey=grey.substring(grey.indexOf(",")+1);
-        String colorB=grey;
-        if (Integer.parseInt(colorB)!=Integer.parseInt(colorG)) return false;
-        else if (Integer.parseInt(colorR)!=Integer.parseInt(colorG)) return false;
+
+        myColor color=new myColor(element.getCssValue("color"));
+        if (color.r!=color.g) return false;
+        else if (color.r!=color.b) return false;
         return true;
 
     }
 
     public boolean checkRed (WebElement element){
 
-        String red=element.getCssValue("color");
-        if (red.contains("rgba"))
-            red= red.substring(0,red.lastIndexOf(","));
-        red=red.replace("rgba","");
-        red=red.replace("rgb","");
-        red= red.replace("(","");
-        red= red.replace(")","");
-        red= red.replace(", ",",");
-        String colorR=red.substring(0,red.indexOf(","));
-        red=red.substring(red.indexOf(",")+1);
-        String colorG=red.substring(0,red.indexOf(","));
-        red=red.substring(red.indexOf(",")+1);
-        String colorB=red;
-        if (Integer.parseInt(colorR)==0) return false;
-        else if (Integer.parseInt(colorG)!=0) return false;
-        else if (Integer.parseInt(colorB)!=0) return false;
+        //String color=element.getCssValue("color");
+        myColor color=new myColor(element.getCssValue("color"));
+
+        if (color.r==0) return false;
+        else if (color.g!=0) return false;
+        else if (color.b!=0) return false;
         return true;
     }
+
+    public class myColor {
+        int r,g,b;
+
+        public myColor(String color) {
+            if (color.contains(("rgba")))
+                color = color.substring(0, color.lastIndexOf(","));
+            color = color.replace("rgba", "");
+            color = color.replace("rgb", "");
+            color = color.replace("(", "");
+            color = color.replace(")", "");
+            color = color.replace(", ", ",");
+            r = Integer.parseInt(color.substring(0, color.indexOf(",")));
+            color = color.substring(color.indexOf(",") + 1);
+            g = Integer.parseInt(color.substring(0, color.indexOf(",")));
+            color = color.substring(color.indexOf(",") + 1);
+            b = Integer.parseInt(color);
+        }
+
+    }
+
+
 
     @After
     public void stop(){
