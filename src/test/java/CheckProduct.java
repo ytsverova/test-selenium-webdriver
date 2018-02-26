@@ -16,7 +16,7 @@ public class CheckProduct {
 
     @Before
     public void start() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
     }
     @Test
@@ -82,6 +82,9 @@ public class CheckProduct {
     public boolean checkGrey(WebElement element)
     {
         String grey=element.getCssValue("color");
+        if (grey.contains("rgba"))
+            grey= grey.substring(0,grey.lastIndexOf(","));
+        grey=grey.replace("rgba","");
         grey=grey.replace("rgb","");
         grey= grey.replace("(","");
         grey= grey.replace(")","");
@@ -100,6 +103,8 @@ public class CheckProduct {
     public boolean checkRed (WebElement element){
 
         String red=element.getCssValue("color");
+        if (red.contains("rgba"))
+            red= red.substring(0,red.lastIndexOf(","));
         red=red.replace("rgba","");
         red=red.replace("rgb","");
         red= red.replace("(","");
