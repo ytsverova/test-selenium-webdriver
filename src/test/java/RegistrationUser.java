@@ -43,11 +43,6 @@ public class RegistrationUser {
         driver.findElement(By.cssSelector("a[href$='logout']")).click();
 
 
-
-
-
-
-
     }
 
 

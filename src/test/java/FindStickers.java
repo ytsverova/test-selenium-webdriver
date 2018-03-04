@@ -21,10 +21,10 @@ public class FindStickers {
     @Test
     public void findStickers(){
             driver.get("http://localhost/litecart/");
-            List<WebElement> products = driver.findElements(By.cssSelector("li[class='product']"));
+            List<WebElement> products = driver.findElements(By.cssSelector("li[class='product column shadow hover-light']"));
             for (int i=1; i<products.size();i=i+1){
                 int count=products.get(i).findElements(By.cssSelector("div[class='sticker']")).size();
-                if (count!=1) {
+                if (count==1) {
                     System.out.println("стикер не единтсвенный");
                 }
 

@@ -16,7 +16,7 @@ public class CheckProduct {
 
     @Before
     public void start() {
-        driver = new FirefoxDriver();
+        driver = new ChromeDriver();
         wait = new WebDriverWait(driver, 10);
     }
     @Test
