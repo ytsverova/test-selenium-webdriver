@@ -49,7 +49,7 @@ public class AddProductToCart {
             driver.findElements(By.cssSelector("li.shortcut")).get(0).click();
             Integer count=driver.findElements(By.cssSelector("#order_confirmation-wrapper tbody tr")).size();
             driver.findElement(By.cssSelector("button[name='remove_cart_item']")).click();
-            wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.cssSelector("#order_confirmation-wrapper tbo"),count));
+            wait.until(ExpectedConditions.numberOfElementsToBeLessThan(By.cssSelector("#order_confirmation-wrapper tb"),count));
 
         }
         driver.findElement(By.cssSelector("button[name='remove_cart_item']")).click();
