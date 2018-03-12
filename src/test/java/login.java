@@ -19,8 +19,8 @@ public class login {
     @Test
     public void MyFirstTest(){
         driver.get("http://localhost/litecart/admin/login.php");
-        driver.findElement(By.name("username")).sendKeys("developer");
-        driver.findElement(By.name("password")).sendKeys("developer");
+        driver.findElement(By.name("username")).sendKeys("admin");
+        driver.findElement(By.name("password")).sendKeys("admin");
         driver.findElement(By.name("login")).click();
 
 
